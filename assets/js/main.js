@@ -45,7 +45,7 @@
         button.textContent = "Sending...";
       }
 
-      fetch("https://formsubmit.co/ajax/enquiry@attsystemsgroup.com", {
+      fetch("https://formsubmit.co/ajax/attin.helpdesk@attsystemsgroup.com", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(data)
