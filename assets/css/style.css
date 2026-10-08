@@ -570,6 +570,10 @@ p { margin: 0 0 16px; color: var(--ink-soft); }
 .form-note { font-size: 12.5px; color: var(--ink-soft); margin-top: 14px; }
 .form-success { display: none; padding: 14px 16px; border-radius: var(--radius-sm); background: #e7f6ec; color: #1b6e3c; font-size: 14px; font-weight: 600; margin-bottom: 16px; }
 .form-success.show { display: block; }
+.form-error { display: none; padding: 14px 16px; border-radius: var(--radius-sm); background: #fdecec; color: #a12622; font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+.form-error.show { display: block; }
+.form-error a { color: inherit; text-decoration: underline; }
+.form-honey { position: absolute; left: -9999px; }
 
 .map-frame { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid rgba(255,255,255,0.7); box-shadow: var(--shadow-sm); height: 260px; margin-top: 18px; }
 .map-frame iframe { width: 100%; height: 100%; border: 0; }
