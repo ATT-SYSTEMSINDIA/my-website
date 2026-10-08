@@ -1,0 +1,190 @@
+/* Shared print styles for the ATT brochures in _brochure/ — rendered to PDF by build.ps1 */
+:root {
+  --att-blue-900: #00304d;
+  --att-blue-800: #003e64;
+  --att-blue-700: #004f80;
+  --att-blue-600: #0067b1;
+  --att-blue-500: #1c82c7;
+  --att-blue-400: #4fa3d8;
+  --att-blue-100: #e6f1f9;
+  --att-gold-700: #9c6a17;
+  --att-gold-600: #d99a34;
+  --att-gold-500: #e8b563;
+  --att-gold-100: #fbeed9;
+  --ink: #131a20;
+  --ink-soft: #4a5560;
+  --navy-grad: linear-gradient(160deg, #061c2e 0%, #0b3150 45%, #0e3a5c 100%);
+  --font-sans: "Inter", "Segoe UI", Arial, sans-serif;
+  --font-display: "Manrope", "Inter", "Segoe UI", Arial, sans-serif;
+}
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: var(--font-sans); color: var(--ink); background: #fff; font-size: 10pt; line-height: 1.5; }
+ul { list-style: none; }
+
+/* ---------- Page frame ---------- */
+.page {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+  break-after: page;
+  page-break-after: always;
+  padding: 16mm 16mm 18mm;
+  background: #f6f9fc;
+}
+.page:last-child { break-after: auto; page-break-after: auto; }
+.page > * { position: relative; z-index: 1; }
+
+/* Ambient colour blobs behind light pages — the glass backdrop */
+.page.light::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(60mm 60mm at 8% 12%, rgba(79,163,216,0.28), transparent 70%),
+    radial-gradient(70mm 70mm at 95% 30%, rgba(232,181,99,0.22), transparent 70%),
+    radial-gradient(80mm 80mm at 20% 85%, rgba(0,103,177,0.16), transparent 70%),
+    radial-gradient(60mm 60mm at 90% 95%, rgba(79,163,216,0.22), transparent 70%);
+}
+
+/* Dark navy pages / panels */
+.page.dark, .panel-dark { background: var(--navy-grad); color: #fff; }
+.page.dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(90mm 90mm at 88% 14%, rgba(79,163,216,0.36), transparent 70%),
+    radial-gradient(80mm 80mm at 8% 72%, rgba(232,181,99,0.20), transparent 70%),
+    radial-gradient(100mm 100mm at 92% 96%, rgba(28,130,199,0.30), transparent 70%);
+}
+
+/* ---------- Surfaces ---------- */
+.glass {
+  background: rgba(255,255,255,0.62);
+  border: 1px solid rgba(255,255,255,0.85);
+  border-radius: 4mm;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 2mm 6mm rgba(0,48,77,0.08);
+}
+.glass-dark {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 4mm;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.accent-left { border-left: 1.2mm solid var(--att-gold-600); }
+
+.logo-chip {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255,255,255,0.96);
+  border-radius: 3mm;
+  padding: 3.5mm 5mm;
+  box-shadow: 0 2mm 8mm rgba(0,0,0,0.22);
+}
+.logo-chip img { display: block; height: 20mm; width: auto; }
+.logo-chip.lg img { height: 26mm; }
+.logo-chip.sm img { height: 14mm; }
+
+/* ---------- Type ---------- */
+h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; }
+h2 { font-size: 21pt; font-weight: 800; color: var(--att-blue-900); margin-bottom: 3mm; letter-spacing: -0.005em; }
+h3 { font-size: 11pt; font-weight: 700; color: var(--att-blue-900); margin-bottom: 1.5mm; }
+.dark h2, .panel-dark h2, .dark h3, .panel-dark h3 { color: #fff; }
+p.lead { font-size: 10.8pt; color: var(--ink-soft); max-width: 165mm; }
+.dark p.lead, .panel-dark p.lead { color: rgba(255,255,255,0.8); }
+.muted { color: var(--ink-soft); }
+.small { font-size: 8.8pt; }
+
+.eyebrow {
+  display: flex; align-items: center; gap: 2.5mm;
+  font-size: 7.8pt; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--att-gold-700);
+  margin-bottom: 3mm;
+}
+.eyebrow::before { content: ""; width: 7mm; height: 0.6mm; background: var(--att-gold-600); border-radius: 1mm; }
+.dark .eyebrow, .panel-dark .eyebrow { color: var(--att-gold-500); }
+.dark .eyebrow::before, .panel-dark .eyebrow::before { background: var(--att-gold-500); }
+
+.big-num { font-family: var(--font-display); font-weight: 800; color: var(--att-gold-600); line-height: 1; }
+.dark .big-num, .panel-dark .big-num { color: var(--att-gold-500); }
+
+/* ---------- Icons ---------- */
+.ico {
+  flex: none;
+  width: 9.5mm; height: 9.5mm; border-radius: 2.4mm;
+  background: linear-gradient(135deg, var(--att-blue-500), var(--att-blue-700));
+  color: #fff; display: inline-flex; align-items: center; justify-content: center;
+}
+.ico svg { width: 5.2mm; height: 5.2mm; }
+.ico.soft { background: var(--att-blue-100); color: var(--att-blue-600); }
+.ico.sm { width: 8mm; height: 8mm; border-radius: 2mm; }
+.ico.sm svg { width: 4.5mm; height: 4.5mm; }
+
+/* ---------- Lists ---------- */
+.ticks li { position: relative; padding-left: 5mm; margin-bottom: 1.4mm; font-size: 9pt; color: var(--ink-soft); line-height: 1.42; }
+.ticks li::before {
+  content: ""; position: absolute; left: 0.4mm; top: 1.6mm;
+  width: 1.8mm; height: 1.8mm; border-radius: 50%;
+  background: var(--att-blue-500);
+  box-shadow: 0 0 0 0.6mm rgba(28,130,199,0.18);
+}
+.dark .ticks li, .panel-dark .ticks li { color: rgba(255,255,255,0.84); }
+.dark .ticks li::before, .panel-dark .ticks li::before { background: var(--att-gold-500); box-shadow: 0 0 0 0.6mm rgba(232,181,99,0.2); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 1.8mm; }
+.chips span {
+  font-size: 7.8pt; font-weight: 600; color: var(--att-blue-800);
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(0,103,177,0.18);
+  border-radius: 10mm; padding: 1.2mm 3mm;
+  white-space: nowrap;
+}
+.dark .chips span, .panel-dark .chips span { color: #fff; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25); }
+
+/* ---------- Layout helpers ---------- */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4.5mm; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3.5mm; }
+.mt-2 { margin-top: 2mm; } .mt-3 { margin-top: 3mm; } .mt-4 { margin-top: 4mm; } .mt-5 { margin-top: 5mm; }
+.mt-6 { margin-top: 6mm; } .mt-8 { margin-top: 8mm; } .mt-10 { margin-top: 10mm; }
+.pad { padding: 5mm; }
+.pad-sm { padding: 4mm; }
+
+/* ---------- Running footer ---------- */
+.page-foot {
+  position: absolute; left: 16mm; right: 16mm; bottom: 8mm; z-index: 1;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 7.4pt; color: var(--ink-soft);
+  border-top: 0.3mm solid rgba(0,79,128,0.15);
+  padding-top: 2.5mm;
+}
+.page-foot img { height: 5mm; width: auto; }
+.dark .page-foot { color: rgba(255,255,255,0.6); border-top-color: rgba(255,255,255,0.15); }
+
+/* ---------- Contact band (shared back-page block) ---------- */
+.contact-band {
+  position: relative; overflow: hidden;
+  background: var(--navy-grad);
+  color: #fff;
+  border-radius: 5mm;
+  padding: 8mm;
+}
+.contact-band::before {
+  content: ""; position: absolute; width: 80mm; height: 80mm; right: -18mm; top: -30mm;
+  background: radial-gradient(circle, rgba(232,181,99,0.28), transparent 70%);
+}
+.contact-band > * { position: relative; }
+.contact-band h2 { color: #fff; font-size: 17pt; margin-bottom: 2mm; }
+.contact-band .intro { font-size: 9.5pt; color: rgba(255,255,255,0.78); margin-bottom: 6mm; }
+.contact-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 6mm; }
+.contact-item { display: flex; gap: 3mm; margin-bottom: 3.5mm; font-size: 9pt; line-height: 1.45; }
+.contact-item svg { flex: none; width: 4.5mm; height: 4.5mm; color: var(--att-gold-500); margin-top: 0.4mm; }
+.contact-item b { display: block; font-size: 7.4pt; letter-spacing: 0.1em; text-transform: uppercase; color: var(--att-gold-500); margin-bottom: 0.5mm; }
+.contact-item span { color: rgba(255,255,255,0.88); }
+.contact-sign { display: flex; align-items: center; gap: 5mm; margin-top: 6mm; padding-top: 5mm; border-top: 1px solid rgba(255,255,255,0.14); }
+.contact-sign p { font-size: 7.8pt; color: rgba(255,255,255,0.62); }

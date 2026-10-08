@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Q'SOFT® Product Brochure | ATT Systems (India) Private Limited</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="brochure.css">
+<style>
+  /* ---------- Cover: light top, navy journey band ---------- */
+  .cover { padding: 0; display: flex; flex-direction: column; }
+  .cover-top { flex: 1; padding: 16mm 16mm 0; display: flex; flex-direction: column; }
+  .cover-bar { display: flex; justify-content: space-between; align-items: center; }
+  .cover-bar img.att { height: 26mm; width: auto; display: block; }
+  .cover-bar .tag { font-size: 8pt; font-weight: 600; color: var(--att-blue-700); letter-spacing: 0.1em; text-transform: uppercase; }
+  .qs-hero { margin-top: 16mm; display: grid; grid-template-columns: 1fr; }
+  .cover-stats { margin-top: auto; margin-bottom: 9mm; }
+  .qs-logo { display: inline-block; padding: 6mm 8mm; width: max-content; }
+  .qs-logo img { height: 26mm; width: auto; display: block; }
+  .cover h1 { font-size: 34pt; font-weight: 800; color: var(--att-blue-900); letter-spacing: -0.01em; margin: 10mm 0 4mm; }
+  .cover h1 span { color: var(--att-gold-600); }
+  .cover .sub { font-size: 12pt; color: var(--ink-soft); max-width: 150mm; }
+  .tm { margin-top: 5mm; font-size: 8.5pt; color: var(--att-blue-700); font-weight: 600; }
+
+  .journey-band { position: relative; padding: 9mm 16mm 10mm; }
+  .journey-band::before {
+    content: ""; position: absolute; width: 90mm; height: 90mm; right: -20mm; top: -40mm;
+    background: radial-gradient(circle, rgba(232,181,99,0.25), transparent 70%);
+  }
+  .journey-band > * { position: relative; }
+  .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3mm; margin-top: 2mm; }
+  .step { padding: 4mm 3.5mm; text-align: center; }
+  .step .ico { margin: 0 auto 2.5mm; }
+  .step .big-num { font-size: 9pt; display: block; margin-bottom: 1mm; }
+  .step b { display: block; font-family: var(--font-display); font-size: 9.5pt; }
+  .step span { font-size: 7.6pt; color: rgba(255,255,255,0.72); }
+  .band-foot { display: flex; justify-content: space-between; margin-top: 7mm; font-size: 7.8pt; color: rgba(255,255,255,0.6); }
+
+  /* ---------- Journey page ---------- */
+  .jrow { display: grid; grid-template-columns: 16mm 1fr 70mm; gap: 4mm; align-items: center; padding: 6mm 5mm; margin-bottom: 4.5mm; }
+  .jrow .big-num { font-size: 20pt; }
+  .jrow h3 { margin-bottom: 0.8mm; }
+  .jrow p { font-size: 8.8pt; color: var(--ink-soft); }
+  .jrow .chips { justify-content: flex-start; }
+
+  /* ---------- Component reference ---------- */
+  .ref { display: grid; grid-template-columns: 1fr 1fr; gap: 0 7mm; padding: 5mm 6mm; }
+  .ref-item { display: flex; gap: 3mm; padding: 1.7mm 0; border-bottom: 1px solid rgba(0,79,128,0.09); }
+  .contact-band { padding: 6.5mm 8mm; }
+  .contact-band .intro { margin-bottom: 4mm; }
+  .contact-sign { margin-top: 3mm; padding-top: 3.5mm; }
+  .ref-item:nth-last-child(-n+2) { border-bottom: 0; }
+  .ref-item .n { font-family: var(--font-display); font-weight: 800; font-size: 8.5pt; color: var(--att-gold-600); width: 6mm; flex: none; padding-top: 0.2mm; }
+  .ref-item b { display: block; font-size: 8.8pt; color: var(--att-blue-900); font-family: var(--font-display); }
+  .ref-item span { font-size: 7.8pt; color: var(--ink-soft); line-height: 1.4; display: block; }
+</style>
+</head>
+<body>
+
+<!-- =============== PAGE 1 — COVER =============== -->
+<section class="page light cover">
+  <div class="cover-top">
+    <div class="cover-bar">
+      <img class="att" src="../assets/img/att-logo-trim.png" alt="ATT Systems">
+      <span class="tag">Product Brochure · 2026</span>
+    </div>
+
+    <div class="qs-hero">
+      <div class="glass qs-logo"><img src="../assets/img/products/qsoft-logo.jpg" alt="Q'SOFT"></div>
+      <h1>Intelligent queue management,<br><span>from booking to feedback.</span></h1>
+      <p class="sub">Q'SOFT® enhances customer flow, minimises waiting time and delivers an efficient service experience for banks, hospitals, government offices, retail outlets and customer service centres.</p>
+      <div class="tm">Registered Trademark No. 2515520</div>
+    </div>
+
+    <div class="grid-3 cover-stats">
+      <div class="glass pad"><div class="big-num" style="font-size:24pt;">16</div><p class="small muted mt-2">Modular hardware &amp; software components</p></div>
+      <div class="glass pad"><div class="big-num" style="font-size:24pt;">24/7</div><p class="small muted mt-2">Technical support &amp; maintenance</p></div>
+      <div class="glass pad"><div class="big-num" style="font-size:24pt;">2007</div><p class="small muted mt-2">Serving clients across India since</p></div>
+    </div>
+  </div>
+
+  <div class="journey-band panel-dark">
+    <div class="eyebrow">The Q'SOFT® customer journey</div>
+    <div class="steps">
+      <div class="step glass-dark"><span class="big-num">01</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><b>Book</b><span>Appointments &amp; app</span></div>
+      <div class="step glass-dark"><span class="big-num">02</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M12 15v2"/></svg></div><b>Arrive</b><span>Kiosk &amp; ticket</span></div>
+      <div class="step glass-dark"><span class="big-num">03</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="12" rx="1"/><path d="M8 21h8M12 17v4"/></svg></div><b>Wait</b><span>Displays &amp; SMS</span></div>
+      <div class="step glass-dark"><span class="big-num">04</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 0116 0M4 12v3a2 2 0 002 2h1v-5H4zm16 0v3a2 2 0 01-2 2h-1v-5h3z"/></svg></div><b>Get called</b><span>Recall &amp; serve</span></div>
+      <div class="step glass-dark"><span class="big-num">05</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.5-9.5-9C1 8.5 2.7 5 6.2 5c2 0 3.4 1.1 4.3 2.4C11.4 6.1 12.8 5 14.8 5 18.3 5 20 8.5 18.5 12 16.5 16.5 12 21 12 21z"/></svg></div><b>Feedback</b><span>Rate the service</span></div>
+    </div>
+    <div class="band-foot">
+      <span>ATT Systems (India) Private Limited · Part of the ATT Systems Group</span>
+      <span>attsystemsgroup.in</span>
+    </div>
+  </div>
+</section>
+
+<!-- =============== PAGE 2 — JOURNEY =============== -->
+<section class="page light">
+  <div class="eyebrow">How it works</div>
+  <h2>Every step of the visit, managed.</h2>
+  <p class="lead">Q'SOFT® is built from 16 modular hardware and software components. Each one serves a step in the customer's visit — and every one reports back to the same central platform.</p>
+
+  <div class="mt-6">
+    <div class="glass jrow">
+      <div class="big-num">01</div>
+      <div><h3>Book ahead</h3><p>Customers schedule visits online or register their arrival from their phone, reducing walk-in load at the counter.</p></div>
+      <div class="chips"><span>Appointment Scheduler</span><span>mConnect</span></div>
+    </div>
+    <div class="glass jrow">
+      <div class="big-num">02</div>
+      <div><h3>Arrive &amp; register</h3><p>Kiosks and terminals capture customer details, issue tickets and direct each visitor to the correct counter.</p></div>
+      <div class="chips"><span>Kiosk Management System</span><span>Customer Request Terminal</span><span>Queue Ticketing Kiosk</span><span>RFID</span></div>
+    </div>
+    <div class="glass jrow">
+      <div class="big-num">03</div>
+      <div><h3>Wait, informed</h3><p>Clear displays and notifications show live queue numbers, so customers know exactly where they stand.</p></div>
+      <div class="chips"><span>LED / LCD Displays</span><span>Queue Media Display</span><span>SMS Solution</span><span>Room Display Management</span></div>
+    </div>
+    <div class="glass jrow">
+      <div class="big-num">04</div>
+      <div><h3>Get called &amp; served</h3><p>Staff call the next customer from the counter or on the move — with portable alerts for customers who need assistance.</p></div>
+      <div class="chips"><span>Recall Terminal</span><span>mTab</span><span>iBuzz</span></div>
+    </div>
+    <div class="glass jrow">
+      <div class="big-num">05</div>
+      <div><h3>Share feedback</h3><p>Customers rate their experience, giving structured feedback on satisfaction and individual staff performance.</p></div>
+      <div class="chips"><span>Feedback Solution</span></div>
+    </div>
+    <div class="glass jrow accent-left">
+      <div class="big-num">06</div>
+      <div><h3>Manage &amp; improve</h3><p>Administrators track queues and staff productivity across every location through reports and tailored interfaces.</p></div>
+      <div class="chips"><span>Web / Reporting Admin</span><span>Interface Component Solutions</span></div>
+    </div>
+  </div>
+
+  <div class="page-foot"><span>Q'SOFT® Intelligent Queue Management</span><span>02</span></div>
+</section>
+
+<!-- =============== PAGE 3 — WHY Q'SOFT =============== -->
+<section class="page light">
+  <div class="eyebrow">Why Q'SOFT®</div>
+  <h2>Take the stress out of waiting.</h2>
+
+  <div class="grid-2 mt-5">
+    <div class="glass pad accent-left">
+      <h3>The challenge</h3>
+      <p class="small muted">Customers queueing for hours. Complaints about who is next. Staff hastily doing their job while the waiting area fills up. The result is a frustrating, stressful service experience for everyone involved.</p>
+    </div>
+    <div class="glass pad">
+      <h3>The Q'SOFT® answer</h3>
+      <p class="small muted">A customised queue solution that offers control and flexibility in managing queue flow — digital tokens, appointments, live displays and notifications, backed by reporting that shows where time is being lost.</p>
+    </div>
+  </div>
+
+  <div class="eyebrow mt-8">Core capabilities</div>
+  <div class="grid-3">
+    <div class="glass pad"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div><h3 class="mt-3">Digital tokens &amp; appointments</h3><p class="small muted">Token generation at kiosks and terminals, plus internet-based appointment scheduling.</p></div>
+    <div class="glass pad"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20a8 8 0 100-16 8 8 0 000 16z"/><path d="M12 8v4l3 2"/></svg></div><h3 class="mt-3">Real-time monitoring</h3><p class="small muted">Live queue status on displays, with SMS and app notifications for customers.</p></div>
+    <div class="glass pad"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V9m6 10V5m6 14v-7"/></svg></div><h3 class="mt-3">Analytics &amp; administration</h3><p class="small muted">Centralised administration with queue and staff performance reports.</p></div>
+    <div class="glass pad"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg></div><h3 class="mt-3">Finds the bottlenecks</h3><p class="small muted">Capable of identifying current and potential future bottlenecks.</p></div>
+    <div class="glass pad"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 7H5a2 2 0 00-2 2v6a2 2 0 002 2h4M15 7h4a2 2 0 012 2v6a2 2 0 01-2 2h-4M8 12h8"/></svg></div><h3 class="mt-3">Integrates with your systems</h3><p class="small muted">Works with third-party software and systems to increase productivity by reducing process steps.</p></div>
+    <div class="glass pad"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></div><h3 class="mt-3">Simple installation</h3><p class="small muted">Quick to install, yet packed with powerful and comprehensive features.</p></div>
+  </div>
+
+  <div class="grid-2 mt-8">
+    <div>
+      <div class="eyebrow">Built for</div>
+      <div class="chips"><span>Hospitals &amp; healthcare</span><span>Banks &amp; finance</span><span>Government offices</span><span>Retail outlets</span><span>Customer service centres</span></div>
+    </div>
+    <div>
+      <div class="eyebrow">Proven in public healthcare</div>
+      <div class="chips"><span>ESIC Hospitals</span><span>AIIMS Delhi</span><span>ESIC Gulbarga</span></div>
+    </div>
+  </div>
+
+  <div class="glass pad mt-8" style="display:flex;gap:5mm;align-items:center;">
+    <div class="big-num" style="font-size:26pt;">24/7</div>
+    <p class="small muted"><b style="color:var(--att-blue-900);">Support beyond go-live.</b> Round-the-clock maintenance and technical support, end-to-end project management, solution design and consultancy, and SaaS delivery for organisations that prefer OPEX over CAPEX.</p>
+  </div>
+
+  <div class="page-foot"><span>Q'SOFT® Intelligent Queue Management</span><span>03</span></div>
+</section>
+
+<!-- =============== PAGE 4 — COMPONENTS & CONTACT =============== -->
+<section class="page light">
+  <div class="eyebrow">Component reference</div>
+  <h2>16 building blocks, one connected system.</h2>
+  <p class="lead">Mix and match to fit the site, the counter and the customer — share your floor plan and counter count, and we'll map the right components to your layout.</p>
+
+  <div class="glass ref mt-5">
+    <div class="ref-item"><span class="n">01</span><div><b>Appointment Scheduler</b><span>Internet-based appointment scheduling with automatic server updates.</span></div></div>
+    <div class="ref-item"><span class="n">02</span><div><b>Customer Request Terminal</b><span>Customer registration and ticket issuance — the first touchpoint.</span></div></div>
+    <div class="ref-item"><span class="n">03</span><div><b>Feedback Solution</b><span>Measures satisfaction and gathers feedback on staff performance.</span></div></div>
+    <div class="ref-item"><span class="n">04</span><div><b>Interface Component Solutions</b><span>Customised GUIs built around each client's day-to-day operations.</span></div></div>
+    <div class="ref-item"><span class="n">05</span><div><b>Kiosk Management System</b><span>Captures customer information and directs visitors to the correct counter.</span></div></div>
+    <div class="ref-item"><span class="n">06</span><div><b>LED / LCD Displays</b><span>Customisable displays with clear visibility in high-motion environments.</span></div></div>
+    <div class="ref-item"><span class="n">07</span><div><b>Queue Media Display</b><span>Branding, advertisements and scrolling messages alongside queue info.</span></div></div>
+    <div class="ref-item"><span class="n">08</span><div><b>Queue Ticketing Kiosk</b><span>Reduces per-customer transaction time at ticket issuance.</span></div></div>
+    <div class="ref-item"><span class="n">09</span><div><b>Recall Terminal</b><span>Calls queued customers back through a dedicated staff interface.</span></div></div>
+    <div class="ref-item"><span class="n">10</span><div><b>RFID</b><span>Distance-based, contactless customer identification via electronic tags.</span></div></div>
+    <div class="ref-item"><span class="n">11</span><div><b>Room Display Management</b><span>Live queue numbers and room status outside consultation rooms.</span></div></div>
+    <div class="ref-item"><span class="n">12</span><div><b>SMS Solution</b><span>Queue-number notifications and automatic reminders.</span></div></div>
+    <div class="ref-item"><span class="n">13</span><div><b>Web / Reporting Admin</b><span>Queue and performance reports across every location.</span></div></div>
+    <div class="ref-item"><span class="n">14</span><div><b>mConnect</b><span>Mobile app to register arrival and check live queue information remotely.</span></div></div>
+    <div class="ref-item"><span class="n">15</span><div><b>mTab</b><span>Lets staff call and serve customers while mobile on the floor.</span></div></div>
+    <div class="ref-item"><span class="n">16</span><div><b>iBuzz</b><span>Portable buzzer with customised alerts for physically challenged customers.</span></div></div>
+  </div>
+
+  <div class="contact-band panel-dark mt-6">
+    <div class="eyebrow">Get in touch</div>
+    <h2>Request a demo or quotation</h2>
+    <p class="intro">Our India team typically responds within two working days.</p>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><div><b>Registered office</b><span>No. 140 &amp; 141, Chaithanya Enclave, Aymangala Hobli,<br>Hiriyur Taluk, Chitradurga – 577558, Karnataka, India</span></div></div>
+        <div class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><div><b>Email</b><span>attin.helpdesk@attsystemsgroup.com</span></div></div>
+      </div>
+      <div>
+        <div class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 2 .6 2.9a2 2 0 01-.5 2.1L8 10a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.3 1.9.5 2.9.6a2 2 0 011.7 2z"/></svg><div><b>Phone</b><span>+91 93792 55836 · General<br>+91 99024 76871 · General<br>+91 93792 55835 · Sales</span></div></div>
+        <div class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg><div><b>Website</b><span>attsystemsgroup.in</span></div></div>
+      </div>
+    </div>
+    <div class="contact-sign">
+      <div class="logo-chip sm"><img src="../assets/img/att-logo-trim.png" alt="ATT Systems"></div>
+      <p>ATT Systems (India) Private Limited is part of the ATT Systems Group.<br>Q'SOFT® is a registered trademark (TM No. 2515520).</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
