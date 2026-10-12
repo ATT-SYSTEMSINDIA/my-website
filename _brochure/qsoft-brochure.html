@@ -10,12 +10,11 @@
   .cover { padding: 0; display: flex; flex-direction: column; }
   .cover-top { flex: 1; padding: 16mm 16mm 0; display: flex; flex-direction: column; }
   .cover-bar { display: flex; justify-content: space-between; align-items: center; }
-  .cover-bar img.att { height: 26mm; width: auto; display: block; }
-  .cover-bar .tag { font-size: 8pt; font-weight: 600; color: var(--att-blue-700); letter-spacing: 0.1em; text-transform: uppercase; }
-  .qs-hero { margin-top: 16mm; display: grid; grid-template-columns: 1fr; }
+  .cover-bar .tag { font-size: 8pt; font-weight: 600; color: var(--att-blue-700); letter-spacing: 0.1em; text-transform: uppercase; align-self: flex-start; margin-top: 3mm; }
+  .qs-hero { margin-top: 8mm; display: grid; grid-template-columns: 1fr; }
   .cover-stats { margin-top: auto; margin-bottom: 9mm; }
-  .qs-logo { display: inline-block; padding: 6mm 8mm; width: max-content; }
-  .qs-logo img { height: 26mm; width: auto; display: block; }
+  .qs-logo { display: inline-block; padding: 6mm 9mm; width: max-content; }
+  .qs-logo img { height: 34mm; width: auto; display: block; }
   .cover h1 { font-size: 34pt; font-weight: 800; color: var(--att-blue-900); letter-spacing: -0.01em; margin: 10mm 0 4mm; }
   .cover h1 span { color: var(--att-gold-600); }
   .cover .sub { font-size: 12pt; color: var(--ink-soft); max-width: 150mm; }
@@ -33,7 +32,7 @@
   .step .big-num { font-size: 9pt; display: block; margin-bottom: 1mm; }
   .step b { display: block; font-family: var(--font-display); font-size: 9.5pt; }
   .step span { font-size: 7.6pt; color: rgba(255,255,255,0.72); }
-  .band-foot { display: flex; justify-content: space-between; margin-top: 7mm; font-size: 7.8pt; color: rgba(255,255,255,0.6); }
+  .band-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 6mm; font-size: 7.8pt; color: rgba(255,255,255,0.6); }
 
   /* ---------- Journey page ---------- */
   .jrow { display: grid; grid-template-columns: 16mm 1fr 70mm; gap: 4mm; align-items: center; padding: 6mm 5mm; margin-bottom: 4.5mm; }
@@ -60,12 +59,11 @@
 <section class="page light cover">
   <div class="cover-top">
     <div class="cover-bar">
-      <img class="att" src="../assets/img/att-logo-trim.png" alt="ATT Systems">
+      <div class="glass qs-logo"><img src="../assets/img/products/qsoft-logo.jpg" alt="Q'SOFT"></div>
       <span class="tag">Product Brochure · 2026</span>
     </div>
 
     <div class="qs-hero">
-      <div class="glass qs-logo"><img src="../assets/img/products/qsoft-logo.jpg" alt="Q'SOFT"></div>
       <h1>Intelligent queue management,<br><span>from booking to feedback.</span></h1>
       <p class="sub">Q'SOFT® enhances customer flow, minimises waiting time and delivers an efficient service experience for banks, hospitals, government offices, retail outlets and customer service centres.</p>
       <div class="tm">Registered Trademark No. 2515520</div>
@@ -88,7 +86,7 @@
       <div class="step glass-dark"><span class="big-num">05</span><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.5-9.5-9C1 8.5 2.7 5 6.2 5c2 0 3.4 1.1 4.3 2.4C11.4 6.1 12.8 5 14.8 5 18.3 5 20 8.5 18.5 12 16.5 16.5 12 21 12 21z"/></svg></div><b>Feedback</b><span>Rate the service</span></div>
     </div>
     <div class="band-foot">
-      <span>ATT Systems (India) Private Limited · Part of the ATT Systems Group</span>
+      <span class="powered">Powered by <span class="chip"><img src="../assets/img/att-logo-trim.png" alt="ATT Systems"></span></span>
       <span>attsystemsgroup.in</span>
     </div>
   </div>
@@ -221,8 +219,11 @@
       </div>
     </div>
     <div class="contact-sign">
-      <div class="logo-chip sm"><img src="../assets/img/att-logo-trim.png" alt="ATT Systems"></div>
-      <p>ATT Systems (India) Private Limited is part of the ATT Systems Group.<br>Q'SOFT® is a registered trademark (TM No. 2515520).</p>
+      <div class="logo-chip sm"><img src="../assets/img/products/qsoft-logo.jpg" alt="Q'SOFT"></div>
+      <div>
+        <span class="powered">Powered by <span class="chip"><img src="../assets/img/att-logo-trim.png" alt="ATT Systems"></span></span>
+        <p class="mt-2">Q'SOFT® is a registered trademark (TM No. 2515520).<br>ATT Systems (India) Private Limited is part of the ATT Systems Group.</p>
+      </div>
     </div>
   </div>
 </section>

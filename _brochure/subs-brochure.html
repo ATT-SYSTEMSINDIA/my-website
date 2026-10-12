@@ -22,8 +22,9 @@
   .cover-bar .tag { font-size: 8pt; color: rgba(255,255,255,0.85); letter-spacing: 0.1em; text-transform: uppercase; background: rgba(6,28,46,0.45); padding: 1.5mm 3.5mm; border-radius: 10mm; border: 1px solid rgba(255,255,255,0.2); }
   .cover-body { flex: 1; padding: 4mm 16mm 0; display: flex; flex-direction: column; }
   .subs-title { display: flex; align-items: center; gap: 6mm; }
-  .subs-title .logo-chip img { height: 22mm; }
-  .subs-title h1 { font-size: 34pt; font-weight: 800; letter-spacing: -0.01em; line-height: 1.05; }
+  .subs-title .logo-chip { padding: 4mm 6mm; }
+  .subs-title .logo-chip img { height: 34mm; }
+  .subs-title h1 { font-size: 46pt; font-weight: 800; letter-spacing: -0.01em; line-height: 1.05; }
   .subs-title h1 small { display: block; font-size: 13pt; font-weight: 600; color: rgba(255,255,255,0.75); letter-spacing: 0; margin-top: 2mm; }
   .cover-tagline { font-family: var(--font-display); font-size: 17pt; font-weight: 700; line-height: 1.25; margin-top: 9mm; max-width: 165mm; }
   .cover-tagline span { color: var(--att-gold-500); }
@@ -36,12 +37,13 @@
   /* ---------- Back cover ---------- */
   .back { display: flex; flex-direction: column; padding: 20mm 16mm 14mm; }
   .back-logos { display: flex; gap: 4mm; }
-  .back-logos .logo-chip img { height: 22mm; }
+  .back-logos .logo-chip { padding: 4mm 6mm; }
+  .back-logos .logo-chip img { height: 34mm; }
   .back > h2 { font-size: 26pt; margin-top: 26mm; line-height: 1.2; max-width: 165mm; }
   .back > h2 span { color: var(--att-gold-500); }
   .back .contact-grid { grid-template-columns: 1.45fr 1fr; }
   .back .contact-band { margin-top: auto; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); }
-  .cover-foot { padding: 0 16mm 10mm; display: flex; justify-content: space-between; font-size: 7.8pt; color: rgba(255,255,255,0.6); }
+  .cover-foot { padding: 0 16mm 10mm; display: flex; justify-content: space-between; align-items: center; font-size: 7.8pt; color: rgba(255,255,255,0.6); }
 
   /* ---------- Overview ---------- */
   .ov { display: grid; grid-template-columns: 1fr 78mm; gap: 6mm; align-items: start; }
@@ -84,7 +86,7 @@
 <section class="page dark cover">
   <div class="cover-img">
     <div class="cover-bar">
-      <div class="logo-chip"><img src="../assets/img/att-logo-trim.png" alt="ATT Systems"></div>
+      <span></span>
       <span class="tag">Product Brochure · 2026</span>
     </div>
   </div>
@@ -110,7 +112,7 @@
       <div class="chips"><span>Traffic operations</span><span>Enforcement</span><span>Emergency response</span><span>Security governance</span><span>Estate management</span></div>
     </div>
   </div>
-  <div class="cover-foot"><span>ATT Systems (India) Private Limited · Part of the ATT Systems Group</span><span>attsystemsgroup.in</span></div>
+  <div class="cover-foot"><span class="powered">Powered by <span class="chip"><img src="../assets/img/att-logo-trim.png" alt="ATT Systems"></span></span><span>attsystemsgroup.in</span></div>
 </section>
 
 <!-- =============== PAGE 2 — OVERVIEW =============== -->
@@ -328,7 +330,6 @@
 <!-- =============== PAGE 7 — BACK COVER =============== -->
 <section class="page dark back">
   <div class="back-logos">
-    <div class="logo-chip"><img src="../assets/img/att-logo-trim.png" alt="ATT Systems"></div>
     <div class="logo-chip"><img src="../assets/img/products/subs-logo.png" alt="SUBS"></div>
   </div>
 
@@ -350,6 +351,7 @@
       </div>
     </div>
     <div class="contact-sign">
+      <span class="powered">Powered by <span class="chip"><img src="../assets/img/att-logo-trim.png" alt="ATT Systems"></span></span>
       <p>SUBS is powered by ATT Group. All associated intellectual property rights are reserved.<br>ATT Systems (India) Private Limited is part of the ATT Systems Group.</p>
     </div>
   </div>

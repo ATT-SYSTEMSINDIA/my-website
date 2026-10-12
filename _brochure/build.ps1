@@ -1,7 +1,8 @@
 # Renders each brochure page in _brochure/ to a PDF in assets/brochures/ using headless Edge.
 # Usage: powershell -ExecutionPolicy Bypass -File _brochure\build.ps1 [name ...]
 #   e.g. build.ps1 subs-brochure   (no names = build all)
-param([string[]]$Names = @("qsoft-brochure", "subs-brochure", "att-company-profile"))
+param([Parameter(ValueFromRemainingArguments = $true)][string[]]$Names)
+if (-not $Names) { $Names = @("qsoft-brochure", "subs-brochure", "att-company-profile") }
 
 $root = Split-Path -Parent $PSScriptRoot
 $outDir = Join-Path $root "assets\brochures"

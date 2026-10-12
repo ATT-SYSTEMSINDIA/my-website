@@ -90,6 +90,20 @@ ul { list-style: none; }
 .logo-chip.lg img { height: 26mm; }
 .logo-chip.sm img { height: 14mm; }
 
+/* "Powered by ATT Systems" endorsement — product brochures lead with the product brand */
+.powered {
+  display: inline-flex; align-items: center; gap: 2.5mm;
+  font-size: 7.2pt; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.powered .chip {
+  display: inline-flex; align-items: center;
+  background: #fff; border-radius: 1.6mm; padding: 1.2mm 2.2mm;
+  box-shadow: 0 0.5mm 2mm rgba(0,0,0,0.15);
+}
+.powered img { display: block; height: 7mm; width: auto; }
+.dark .powered, .panel-dark .powered, .contact-band .powered { color: rgba(255,255,255,0.72); }
+
 /* ---------- Type ---------- */
 h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; }
 h2 { font-size: 21pt; font-weight: 800; color: var(--att-blue-900); margin-bottom: 3mm; letter-spacing: -0.005em; }
