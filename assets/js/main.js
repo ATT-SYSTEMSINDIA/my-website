@@ -1,8 +1,6 @@
-// Tenders Hub CRM lead webhook - fill these in once the app is deployed somewhere this site can
-// reach it (see Leads/LeadEndpoints.cs, POST /api/leads/webhook/website-form). Leaving the URL
-// blank keeps this entirely inert: the form still works exactly as before, via FormSubmit only.
-const CRM_WEBHOOK_URL = ""; // e.g. "https://tenders.attsystemsgroup.com/api/leads/webhook/website-form"
-const CRM_WEBHOOK_SECRET = ""; // the Leads:WebhookSecret value configured on that server
+// Tenders Hub CRM lead webhook (see Leads/LeadEndpoints.cs, POST /api/leads/webhook/website-form).
+const CRM_WEBHOOK_URL = "https://tenders.attsystemsgroup.in/api/leads/webhook/website-form";
+const CRM_WEBHOOK_SECRET = "0fd204fe6d881abfc27932e4cdbda0fc6906a1b87f279d65";
 
 // Mobile nav toggle
 (function () {
