@@ -1,3 +1,7 @@
+// Tenders Hub CRM lead webhook (see Leads/LeadEndpoints.cs, POST /api/leads/webhook/website-form).
+const CRM_WEBHOOK_URL = "https://tenders.attsystemsgroup.in/api/leads/webhook/website-form";
+const CRM_WEBHOOK_SECRET = "0fd204fe6d881abfc27932e4cdbda0fc6906a1b87f279d65";
+
 // Mobile nav toggle
 (function () {
   const toggle = document.getElementById("navToggle");
@@ -37,6 +41,24 @@
       data._subject = form.dataset.subject || "Website enquiry";
       data._template = "table";
       if (data.email) data._replyto = data.email;
+
+      // Best-effort, fire-and-forget: the CRM webhook never blocks or affects the FormSubmit
+      // flow above (which is what actually drives the success/error message the visitor sees),
+      // so a misconfigured or unreachable CRM can't break the contact form.
+      if (CRM_WEBHOOK_URL) {
+        const crmMessage = [
+          data.company ? "Company: " + data.company : "",
+          data.enquiryType ? "Enquiry type: " + data.enquiryType : "",
+          data.message || ""
+        ].filter(Boolean).join("\n");
+        fetch(CRM_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Webhook-Secret": CRM_WEBHOOK_SECRET },
+          body: JSON.stringify({ name: data.name, email: data.email, phone: data.phone, message: crmMessage, honey: data._honey })
+        }).catch(function (err) {
+          console.warn("CRM webhook failed (enquiry still sent via email):", err);
+        });
+      }
 
       if (success) success.classList.remove("show");
       if (error) error.classList.remove("show");
