@@ -129,6 +129,16 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
   const transcript = []; // this session's Q&A, sent along with the lead so the team has context
   let leadCardShown = false;
 
+  // Tap-to-ask chips so a visitor rarely has to type at all - covers the questions most people
+  // actually have. "Talk to our team" skips the AI entirely and jumps straight to the lead card.
+  const QUICK_QUESTIONS = [
+    "What solutions do you offer?",
+    "Tell me about SUBS",
+    "Tell me about Q'SOFT queue management",
+    "Tell me about Traffic Management Systems",
+    "Talk to our team"
+  ];
+
   function addMessage(role, text) {
     const el = document.createElement("div");
     el.className = "ask-us-msg ask-us-msg-" + role;
@@ -136,6 +146,26 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
     messages.appendChild(el);
     messages.scrollTop = messages.scrollHeight;
     return el;
+  }
+
+  function addQuickReplies() {
+    const list = QUICK_QUESTIONS.filter(function (q) { return q !== "Talk to our team" || !leadCardShown; });
+    if (!list.length) return;
+    const row = document.createElement("div");
+    row.className = "ask-us-chips";
+    list.forEach(function (q) {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "ask-us-chip";
+      chip.textContent = q;
+      chip.addEventListener("click", function () {
+        if (q === "Talk to our team") { messages.innerHTML = ""; showLeadCard(); return; }
+        ask(q);
+      });
+      row.appendChild(chip);
+    });
+    messages.appendChild(row);
+    messages.scrollTop = messages.scrollHeight;
   }
 
   // Shown once, after the first real answer - a visitor who asked something is a far warmer lead
@@ -194,17 +224,16 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
     if (open) {
       input.focus();
-      if (!messages.children.length)
-        addMessage("assistant", "Hi! Ask me anything about ATT Systems' solutions and I'll do my best to help.");
+      if (!messages.children.length) {
+        addMessage("assistant", "Hi! Ask me anything about ATT Systems' solutions, or tap a question below.");
+        addQuickReplies();
+      }
     }
   }
   toggle.addEventListener("click", function () { setOpen(panel.hidden); });
   root.querySelector(".ask-us-close").addEventListener("click", function () { setOpen(false); });
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const question = input.value.trim();
-    if (!question) return;
+  function ask(question) {
     messages.innerHTML = ""; // show one Q&A at a time rather than a growing, scrolling history
     addMessage("user", question);
     transcript.push("Q: " + question);
@@ -227,6 +256,7 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
         pending.textContent = body.answer;
         transcript.push("A: " + body.answer);
         showLeadCard();
+        addQuickReplies();
       })
       .catch(function () {
         pending.textContent = "Sorry, I couldn't get an answer just now - please try again, or use the Contact page.";
@@ -235,5 +265,11 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
         input.disabled = false;
         input.focus();
       });
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const question = input.value.trim();
+    if (question) ask(question);
   });
 })();

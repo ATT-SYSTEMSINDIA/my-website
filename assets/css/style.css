@@ -656,6 +656,9 @@ p { margin: 0 0 16px; color: var(--ink-soft); }
 .ask-us-lead-skip { background: none; border: none; color: var(--ink-soft); font-size: 12.5px; cursor: pointer; padding: 6px 4px; }
 .ask-us-lead-send { background: var(--att-blue-600); color: #fff; border: none; border-radius: var(--radius-sm); padding: 7px 14px; font-weight: 600; font-size: 12.5px; cursor: pointer; }
 .ask-us-lead-send:hover { background: var(--att-blue-700); }
+.ask-us-chips { display: flex; flex-wrap: wrap; gap: 6px; align-self: stretch; }
+.ask-us-chip { background: var(--att-blue-50); color: var(--att-blue-700); border: 1px solid var(--att-blue-100); border-radius: 999px; padding: 7px 12px; font-size: 12.5px; font-weight: 600; cursor: pointer; text-align: left; }
+.ask-us-chip:hover { background: var(--att-blue-100); }
 @media (max-width: 480px) {
   .ask-us { right: 14px; bottom: 14px; }
   .ask-us-panel { width: calc(100vw - 28px); right: -6px; }
