@@ -127,16 +127,18 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
   const input = root.querySelector(".ask-us-input");
 
   const transcript = []; // this session's Q&A, sent along with the lead so the team has context
-  let leadCardShown = false;
 
-  // Tap-to-ask chips so a visitor rarely has to type at all - covers the questions most people
-  // actually have. "Talk to our team" skips the AI entirely and jumps straight to the lead card.
+  // Tap-to-ask chips so a visitor rarely has to type at all. The point of this widget is sales
+  // enquiries, not just answering trivia, so most chips skip the AI entirely and go straight to
+  // the lead card, pre-tagged with the same enquiry types the contact form already tracks
+  // (enquiryType is carried in the lead's message, not a separate field, to reuse one webhook).
+  // One "learn more" chip is kept for a visitor who isn't ready to leave details yet.
   const QUICK_QUESTIONS = [
-    "What solutions do you offer?",
-    "Tell me about SUBS",
-    "Tell me about Q'SOFT queue management",
-    "Tell me about Traffic Management Systems",
-    "Talk to our team"
+    { label: "Request a quotation", enquiryType: "Request for Quotation" },
+    { label: "Request a brochure", enquiryType: "Request for Brochure" },
+    { label: "Have a sales person call me", enquiryType: "Sales person to call" },
+    { label: "Book a discussion", enquiryType: "Meet for discussion" },
+    { label: "What solutions do you offer?" }
   ];
 
   function addMessage(role, text) {
@@ -149,18 +151,16 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
   }
 
   function addQuickReplies() {
-    const list = QUICK_QUESTIONS.filter(function (q) { return q !== "Talk to our team" || !leadCardShown; });
-    if (!list.length) return;
     const row = document.createElement("div");
     row.className = "ask-us-chips";
-    list.forEach(function (q) {
+    QUICK_QUESTIONS.forEach(function (q) {
       const chip = document.createElement("button");
       chip.type = "button";
       chip.className = "ask-us-chip";
-      chip.textContent = q;
+      chip.textContent = q.label;
       chip.addEventListener("click", function () {
-        if (q === "Talk to our team") { messages.innerHTML = ""; showLeadCard(); return; }
-        ask(q);
+        if (q.enquiryType) { messages.innerHTML = ""; showLeadCard(q.enquiryType); return; }
+        ask(q.label);
       });
       row.appendChild(chip);
     });
@@ -168,17 +168,17 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
     messages.scrollTop = messages.scrollHeight;
   }
 
-  // Shown once, after the first real answer - a visitor who asked something is a far warmer lead
-  // than a blank visit, so this is deliberately NOT the AI's job (small local models are not
-  // reliable at reading contact details back out of a conversation); a plain form is.
-  function showLeadCard() {
-    if (leadCardShown || !CRM_WEBHOOK_URL) return;
-    leadCardShown = true;
+  // The point of this widget is sales enquiries, so this is offered after every answer, not just
+  // once - and deliberately NOT the AI's job to drive (small local models are not reliable at
+  // reading contact details back out of a conversation); a plain form is.
+  function showLeadCard(enquiryType) {
+    if (!CRM_WEBHOOK_URL) return;
 
+    const intro = enquiryType ? "Great - let's get that sorted. Share your details:" : "Want our team to follow up with you directly?";
     const card = document.createElement("div");
     card.className = "ask-us-lead-card";
     card.innerHTML =
-      '<p>Want our team to follow up with you directly?</p>' +
+      '<p>' + intro + '</p>' +
       '<input type="text" class="ask-us-lead-name" placeholder="Your name" required>' +
       '<input type="text" class="ask-us-lead-contact" placeholder="Email or phone" required>' +
       '<div class="ask-us-lead-actions">' +
@@ -188,7 +188,7 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
     messages.appendChild(card);
     messages.scrollTop = messages.scrollHeight;
 
-    card.querySelector(".ask-us-lead-skip").addEventListener("click", function () { card.remove(); });
+    card.querySelector(".ask-us-lead-skip").addEventListener("click", function () { card.remove(); addQuickReplies(); });
     card.querySelector(".ask-us-lead-send").addEventListener("click", function () {
       const name = card.querySelector(".ask-us-lead-name").value.trim();
       const contact = card.querySelector(".ask-us-lead-contact").value.trim();
@@ -199,6 +199,10 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
       sendBtn.disabled = true;
       sendBtn.textContent = "Sending...";
 
+      const parts = [];
+      if (enquiryType) parts.push("Enquiry type: " + enquiryType);
+      if (transcript.length) parts.push("Via Ask Us chat:\n" + transcript.join("\n"));
+
       fetch(CRM_WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json", "X-Webhook-Secret": CRM_WEBHOOK_SECRET },
@@ -206,7 +210,7 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
           name: name,
           email: isEmail ? contact : undefined,
           phone: isEmail ? undefined : contact,
-          message: "Via Ask Us chat:\n" + transcript.join("\n"),
+          message: parts.join("\n\n"),
           source: "AskUs"
         })
       })
