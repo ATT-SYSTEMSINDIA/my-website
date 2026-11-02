@@ -126,6 +126,9 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
   const form = root.querySelector(".ask-us-form");
   const input = root.querySelector(".ask-us-input");
 
+  const transcript = []; // this session's Q&A, sent along with the lead so the team has context
+  let leadCardShown = false;
+
   function addMessage(role, text) {
     const el = document.createElement("div");
     el.className = "ask-us-msg ask-us-msg-" + role;
@@ -133,6 +136,57 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
     messages.appendChild(el);
     messages.scrollTop = messages.scrollHeight;
     return el;
+  }
+
+  // Shown once, after the first real answer - a visitor who asked something is a far warmer lead
+  // than a blank visit, so this is deliberately NOT the AI's job (small local models are not
+  // reliable at reading contact details back out of a conversation); a plain form is.
+  function showLeadCard() {
+    if (leadCardShown || !CRM_WEBHOOK_URL) return;
+    leadCardShown = true;
+
+    const card = document.createElement("div");
+    card.className = "ask-us-lead-card";
+    card.innerHTML =
+      '<p>Want our team to follow up with you directly?</p>' +
+      '<input type="text" class="ask-us-lead-name" placeholder="Your name" required>' +
+      '<input type="text" class="ask-us-lead-contact" placeholder="Email or phone" required>' +
+      '<div class="ask-us-lead-actions">' +
+        '<button type="button" class="ask-us-lead-skip">No thanks</button>' +
+        '<button type="button" class="ask-us-lead-send">Send my details</button>' +
+      '</div>';
+    messages.appendChild(card);
+    messages.scrollTop = messages.scrollHeight;
+
+    card.querySelector(".ask-us-lead-skip").addEventListener("click", function () { card.remove(); });
+    card.querySelector(".ask-us-lead-send").addEventListener("click", function () {
+      const name = card.querySelector(".ask-us-lead-name").value.trim();
+      const contact = card.querySelector(".ask-us-lead-contact").value.trim();
+      if (!name || !contact) return;
+      const isEmail = contact.indexOf("@") !== -1;
+
+      const sendBtn = card.querySelector(".ask-us-lead-send");
+      sendBtn.disabled = true;
+      sendBtn.textContent = "Sending...";
+
+      fetch(CRM_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Webhook-Secret": CRM_WEBHOOK_SECRET },
+        body: JSON.stringify({
+          name: name,
+          email: isEmail ? contact : undefined,
+          phone: isEmail ? undefined : contact,
+          message: "Via Ask Us chat:\n" + transcript.join("\n"),
+          source: "AskUs"
+        })
+      })
+        .then(function () {
+          card.innerHTML = '<p>Thanks, ' + name.split(" ")[0] + ' - our team will be in touch soon.</p>';
+        })
+        .catch(function () {
+          card.innerHTML = '<p>Sorry, that didn\'t go through - please use the Contact page instead.</p>';
+        });
+    });
   }
 
   function setOpen(open) {
@@ -151,7 +205,9 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
     e.preventDefault();
     const question = input.value.trim();
     if (!question) return;
+    messages.innerHTML = ""; // show one Q&A at a time rather than a growing, scrolling history
     addMessage("user", question);
+    transcript.push("Q: " + question);
     input.value = "";
     input.disabled = true;
     const pending = addMessage("assistant", "Thinking...");
@@ -167,7 +223,11 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
           return body;
         });
       })
-      .then(function (body) { pending.textContent = body.answer; })
+      .then(function (body) {
+        pending.textContent = body.answer;
+        transcript.push("A: " + body.answer);
+        showLeadCard();
+      })
       .catch(function () {
         pending.textContent = "Sorry, I couldn't get an answer just now - please try again, or use the Contact page.";
       })
