@@ -649,6 +649,13 @@ p { margin: 0 0 16px; color: var(--ink-soft); }
 .ask-us-input:focus { outline: 2px solid var(--att-blue-400); outline-offset: 1px; }
 .ask-us-send { background: var(--att-blue-600); color: #fff; border: none; border-radius: var(--radius-sm); padding: 0 16px; font-weight: 600; font-size: 13.5px; cursor: pointer; }
 .ask-us-send:hover { background: var(--att-blue-700); }
+.ask-us-lead-card { align-self: stretch; background: var(--att-gold-100); border: 1px solid var(--att-gold-500); border-radius: var(--radius-md); padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.ask-us-lead-card p { margin: 0; font-size: 13px; font-weight: 600; color: var(--att-blue-900); }
+.ask-us-lead-card input { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 10px; font-size: 13px; font-family: inherit; }
+.ask-us-lead-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.ask-us-lead-skip { background: none; border: none; color: var(--ink-soft); font-size: 12.5px; cursor: pointer; padding: 6px 4px; }
+.ask-us-lead-send { background: var(--att-blue-600); color: #fff; border: none; border-radius: var(--radius-sm); padding: 7px 14px; font-weight: 600; font-size: 12.5px; cursor: pointer; }
+.ask-us-lead-send:hover { background: var(--att-blue-700); }
 @media (max-width: 480px) {
   .ask-us { right: 14px; bottom: 14px; }
   .ask-us-panel { width: calc(100vw - 28px); right: -6px; }
