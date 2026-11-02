@@ -174,6 +174,12 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
   function showLeadCard(enquiryType) {
     if (!CRM_WEBHOOK_URL) return;
 
+    // Last question asked (if any) is a reasonable starting point for "what are you interested
+    // in" - the visitor can still edit it, but it's required either way: a lead with no stated
+    // reason or interest isn't actionable for sales, whichever path (chip or chat) brought them here.
+    const lastQuestion = transcript.length ? transcript[transcript.length - 2] : null; // "Q: ..." entry
+    const defaultReason = enquiryType ? "" : (lastQuestion ? lastQuestion.replace(/^Q: /, "") : "");
+
     const intro = enquiryType ? "Great - let's get that sorted. Share your details:" : "Want our team to follow up with you directly?";
     const card = document.createElement("div");
     card.className = "ask-us-lead-card";
@@ -181,18 +187,21 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
       '<p>' + intro + '</p>' +
       '<input type="text" class="ask-us-lead-name" placeholder="Your name" required>' +
       '<input type="text" class="ask-us-lead-contact" placeholder="Email or phone" required>' +
+      '<textarea class="ask-us-lead-reason" placeholder="What are you interested in?" required></textarea>' +
       '<div class="ask-us-lead-actions">' +
         '<button type="button" class="ask-us-lead-skip">No thanks</button>' +
         '<button type="button" class="ask-us-lead-send">Send my details</button>' +
       '</div>';
     messages.appendChild(card);
+    card.querySelector(".ask-us-lead-reason").value = defaultReason;
     messages.scrollTop = messages.scrollHeight;
 
     card.querySelector(".ask-us-lead-skip").addEventListener("click", function () { card.remove(); addQuickReplies(); });
     card.querySelector(".ask-us-lead-send").addEventListener("click", function () {
       const name = card.querySelector(".ask-us-lead-name").value.trim();
       const contact = card.querySelector(".ask-us-lead-contact").value.trim();
-      if (!name || !contact) return;
+      const reason = card.querySelector(".ask-us-lead-reason").value.trim();
+      if (!name || !contact || !reason) return;
       const isEmail = contact.indexOf("@") !== -1;
 
       const sendBtn = card.querySelector(".ask-us-lead-send");
@@ -201,6 +210,7 @@ const ASK_URL = "https://tenders.attsystemsgroup.in/api/public/ask";
 
       const parts = [];
       if (enquiryType) parts.push("Enquiry type: " + enquiryType);
+      parts.push("Interested in: " + reason);
       if (transcript.length) parts.push("Via Ask Us chat:\n" + transcript.join("\n"));
 
       fetch(CRM_WEBHOOK_URL, {
